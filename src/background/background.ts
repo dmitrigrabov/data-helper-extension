@@ -1,6 +1,18 @@
-const color = '#3aa757'
+import { urlToAction } from '../lib/urlToAction'
 
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.set({ color })
-  console.log('Default background color set to %cgreen', `color: ${color}`)
+chrome.tabs.onUpdated.addListener(async () => {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+  console.log({ tab })
+  const action = urlToAction(tab.url)
+
+  console.log(action)
 })
+
+chrome.webRequest.onCompleted.addListener(
+  (stuff) => {
+    console.log(stuff)
+  },
+  {
+    urls: ['<all_urls>']
+  }
+)

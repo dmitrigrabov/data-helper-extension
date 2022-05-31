@@ -12,9 +12,9 @@ const manifest: ManifestV3 = {
       matches: ['https://*/*', 'http://*/*']
     }
   ],
-  permissions: ['storage', 'activeTab', 'scripting'],
+  permissions: ['storage', 'activeTab', 'scripting', 'webRequest'],
   action: {
-    default_popup: 'popup.html',
+    default_popup: 'pages/popup/index.html',
     default_icon: {
       '16': '/images/get_started16.png',
       '32': '/images/get_started32.png',
